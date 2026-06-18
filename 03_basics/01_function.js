@@ -6,8 +6,8 @@ function addNumbers(num1, num2) {
 
 
 let result = addNumbers(3,4);
-console.log('Result :',result);
-console.log('Result :',addNumbers()); // undefined
+// console.log('Result :',result);
+// console.log('Result :',addNumbers()); // undefined
 
 
 
@@ -44,6 +44,46 @@ function calculatePrice(val1,val2,...num1)// prints all values like placed them 
 // val1 takes 200 and val2 takes 300 and remaining in num1 
 
 
-console.log(calculatePrice(200,300,400,500,2000)) //[ 400, 500, 2000 ]
+// console.log(calculatePrice(200,300,400,500,2000)) //[ 400, 500, 2000 ]
+
+// ---------------------------------------------------------------------------------------------------------------------------------
+
+// passing objects to functions
+const user = {
+    name: 'Shah Nawaz',
+    age: 20
+}
+
+function handleObject(anyObject)
+{
+    console.log(anyObject);
+}
+
+// handleObject(user)
+handleObject(
+    {
+        name: 'Shah Nawaz',
+        age: 20
+    }
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
