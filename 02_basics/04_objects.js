@@ -40,6 +40,22 @@ console.log(Object.entries(user));
 
 console.log(user.hasOwnProperty('name'));
 
+/**================================================================================================================== */
+
+                                                    // object destructuring
+const course = {
+    coursename: 'Javascript',
+    price: '999',
+    courseInstructor: "MS"
+}
+
+// const {courseInstructor} = course
+// console.log(courseInstructor);   
+const {courseInstructor: instructor} = course
+console.log(instructor);
+
+
+
 
 
 
