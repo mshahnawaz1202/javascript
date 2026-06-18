@@ -231,6 +231,10 @@ real-world JavaScript and interviews.
 
 
 
+const maxi = 20
+const mini = 10
+
+console.log(Math.floor(Math.random()*(maxi-mini+1))+10);
 
 
 
