@@ -60,7 +60,7 @@ const myObj = {
 }
 
 
-for (const [key,value] of myObj) {
+for (const [key,value] of myObj) { // error objects are not iteratabe
     console.log(key, ":- ", value);
 }
 
