@@ -60,13 +60,24 @@ function handleObject(anyObject)
 }
 
 // handleObject(user)
-handleObject(
-    {
-        name: 'Shah Nawaz',
-        age: 20
-    }
-)
+// handleObject(
+//     {
+//         name: 'Shah Nawaz',
+//         age: 20
+//     }
+// )
 
+
+
+// passing arrays to functions
+
+const arr = [ 1, 2, 3, 4 ]
+function printArray(arr1){
+    console.log(arr1);
+    
+}
+
+printArray(arr)
 
 
 
