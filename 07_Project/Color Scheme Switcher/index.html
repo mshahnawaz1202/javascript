@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Scheme Switcher</title>
+    <style>
+        /* ----- reset & base ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, Arial, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .canvas {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        h1 {
+            font-weight: 400;
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 1.8rem;
+            letter-spacing: -0.3px;
+        }
+
+        /* ----- each color box – shows its color ----- */
+        .button {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 0 10px 14px 10px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;  /* Slightly rounded for better appearance */
+            background-color: #e5e7eb;
+            cursor: pointer;     /* Make it clickable */
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Hover effect for better UX */
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Each span shows its exact color */
+        #grey {
+            background-color: grey;
+        }
+        #white {
+            background-color: white;
+            border: 2px solid #9ca3af;
+        }
+        #black {
+            background-color: black;
+            border: 2px solid #4b5563;
+        }
+        #blue {
+            background-color: blue;
+        }
+        #yellow {
+            background-color: yellow;
+            border: 2px solid #d1d5db;
+        }
+        #red {
+            background-color: red;
+            border: 2px solid #d1d5db;
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .button {
+                width: 70px;
+                height: 70px;
+                margin: 0 6px 12px 6px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas">
+        <h1>Color Scheme Switcher</h1>
+        <span class="button" id="grey"></span>
+        <span class="button" id="white"></span>
+        <span class="button" id="black"></span>  
+        <span class="button" id="blue"></span>
+        <span class="button" id="yellow"></span>
+        <span class="button" id="red"></span>
+       
+    </div>
+    <script src='script.js'></script>
+</body>
+</html>
