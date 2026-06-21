@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout & clearTimeout Demo</title>
+</head>
+
+<body style="background-color: black; color: #fff;">
+    <h1>JavaScript Programming</h1>
+    <button id="stop">Stop</button>
+</body>
+
+<script>
+
+    // =====================================================
+    // Function Definition
+    // =====================================================
+    // This function prints a name to the browser console.
+    // It is not executed immediately.
+    // It will only run when called.
+
+    const sayName = function () {
+        console.log('Shah Nawaz');
+    };
+
+
+    // =====================================================
+    // Function to Change Heading Text
+    // =====================================================
+    // This function selects the <h1> element
+    // and changes its content.
+
+    const changeName = function () {
+        document.querySelector('h1').innerHTML =
+            "Muhammad Shah Nawaz";
+    };
+
+
+    // =====================================================
+    // setTimeout()
+    // =====================================================
+    // Syntax:
+    // setTimeout(function, delayInMilliseconds)
+    //
+    // Executes the provided function ONCE after
+    // the specified delay.
+    //
+    // 2000 ms = 2 seconds
+    //
+    // The returned timeout ID is stored in 'changeMe'
+    // so that we can cancel it later if needed.
+
+    const changeMe = setTimeout(changeName, 2000);
+
+
+    // -----------------------------------------------------
+    // Alternative Example
+    // -----------------------------------------------------
+    // Uncomment the line below if you want to print
+    // "Shah Nawaz" in the console after 2 seconds.
+    //
+    // setTimeout(sayName, 2000);
+    // -----------------------------------------------------
+
+
+    // =====================================================
+    // Stop Button Event Listener
+    // =====================================================
+    // When the user clicks the Stop button,
+    // clearTimeout() cancels the scheduled timeout.
+    //
+    // If clicked before 2 seconds:
+    //     Heading will NOT change.
+    //
+    // If clicked after 2 seconds:
+    //     Heading has already changed,
+    //     so clearTimeout() has no effect.
+
+    document.querySelector('#stop')
+        .addEventListener('click', function () {
+
+            clearTimeout(changeMe);
+
+            console.log("Timeout Stopped");
+
+        });
+
+</script>
+
+</html>
