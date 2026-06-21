@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // document.getElementById('owl').onclick = function(){
+    //     alert('owl clicked')
+    // } // it gives less features so we used eventlisteners
+
+    // attach eevnt
+    // jquery -> onEventListener
+
+    // document.getElementById('owl').addEventListener('click',function(){
+    //     alert('Owl is Clicked!')
+    // })
+
+    // document.getElementById('owl').addEventListener('click',function(e){
+    //     console.log(e);
+        
+    // }, false) // false(event Bubbling) and true (Event capturing) => event propagation
+
+    
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget
+    // clientX, clientY, screenX, screenY
+    // altkey, shiftkey, ctrlkey, keyCode
+
+    // -----------------------------Bottom Up-------------------------------------------------------------------------------------------
+    //  document.getElementById('images').addEventListener('click',function(e){
+    //     // console.log(e);
+    //     console.log('clicked inside the ul!');
+        
+        
+    // }, false)
+
+
+
+    //  document.getElementById('owl').addEventListener('click',function(e){
+    //     // console.log(e);
+    //     console.log('owl clicked!');
+        
+        
+    // }, false)
+
+    /*in this both codes are same only ids are differnt 
+    so event bubling is applied here 
+    when we click on any image we have shown that image ul is clicked 
+    but when we click on owl which is also part of ul then first owl clicked
+    then ul clicked is printed bcz bubbling goes from down to upward
+    image => li => ul
+    default value is always false
+    */
+
+
+    // -----------------------Top down-------------------------------------------------------------------------
+    //  document.getElementById('images').addEventListener('click',function(e){
+    //     // console.log(e);
+    //     console.log('clicked inside the ul!');
+    //     e.stopPropagation()
+        
+        
+    // }, true)
+
+
+
+    // document.getElementById('owl').addEventListener('click',function(e){
+    //     // console.log(e);
+    //     console.log('owl clicked!');
+        
+        
+    // }, true)
+
+    /*
+    true is opposite of false
+    ul => li => image
+    */
+
+    /*
+    if we want that only one appear then we can add a method inside that event that prints first
+    e.stopPropagation()
+    it will not goes to 2nd event 
+    */
+
+    // document.getElementById('google').addEventListener('click',function(e){
+    //     // console.log(e);
+    //     console.log('Google clicked!');
+    //     e.preventDefault()
+        
+    // }, true)
+
+
+
+
+    document.querySelector('#images').addEventListener('click',function(e){
+        // console.log(e);
+        // console.log(e.target);
+        console.log(e.target.parentNode);
+        console.log(e.target.tagName);
+
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+
+
+
+            let removeLi = e.target.parentNode
+            removeLi.remove()
+            // removeLi.parentNode.removeChild(removeLi) // 2nd method to remove
+        }
+        
+        
+
+        
+    },false)
+
+
+
+
+
+
+
+
+</script>
+</html>
