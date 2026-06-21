@@ -1,0 +1,430 @@
+# /*
+
+```
+                    JAVASCRIPT EVENTS COMPLETE NOTES
+```
+
+================================================================================
+
+## Topics Covered:
+
+1. onclick Event
+2. addEventListener()
+3. Event Object (e)
+4. Event Bubbling
+5. Event Capturing
+6. stopPropagation()
+7. preventDefault()
+8. Event Delegation
+9. target Property
+10. parentNode Property
+11. tagName Property
+12. Dynamic Element Removal
+
+================================================================================
+
+1. onclick Event
+   ================================================================================
+
+Used to execute code when an element is clicked.
+
+Example:
+
+document.getElementById('owl').onclick = function(){
+alert('owl clicked');
+}
+
+Limitation:
+
+* Only one event handler can be attached.
+* Less flexible than addEventListener().
+
+---
+
+2. addEventListener()
+
+---
+
+Modern and preferred way to attach events.
+
+Syntax:
+
+element.addEventListener(
+eventName,
+callbackFunction,
+useCapture
+);
+
+Parameters:
+
+* eventName      => click, mouseover, keydown, etc.
+* callback       => function executed when event occurs
+* useCapture     => false (default) or true
+
+Example:
+
+document.getElementById('owl').addEventListener(
+'click',
+function(){
+alert('Owl clicked!');
+}
+);
+
+Every event automatically provides an Event Object.
+
+Example:
+
+document.getElementById('owl').addEventListener(
+'click',
+function(e){
+console.log(e);
+}
+);
+
+Useful Properties:
+
+e.type
+e.target
+e.currentTarget
+e.timeStamp
+e.clientX
+e.clientY
+e.defaultPrevented
+
+---
+
+4. Event Bubbling (Bottom-Up)
+
+---
+
+Default behavior in JavaScript.
+
+Flow:
+
+IMG → LI → UL → DIV → BODY
+
+Code:
+
+document.getElementById('images').addEventListener(
+'click',
+function(){
+console.log('UL clicked');
+},
+false
+);
+
+document.getElementById('owl').addEventListener(
+'click',
+function(){
+console.log('Owl clicked');
+},
+false
+);
+
+Output:
+
+Owl clicked
+UL clicked
+
+Reason:
+Event starts from child element and moves upward.
+
+Occurs when third parameter is true.
+
+Flow:
+
+BODY → DIV → UL → LI → IMG
+
+Code:
+
+document.getElementById('images').addEventListener(
+'click',
+function(){
+console.log('UL clicked');
+},
+true
+);
+
+document.getElementById('owl').addEventListener(
+'click',
+function(){
+console.log('Owl clicked');
+},
+true
+);
+
+Output:
+
+UL clicked
+Owl clicked
+
+Reason:
+Event starts from parent and moves downward.
+
+---
+
+6. stopPropagation()
+
+---
+
+Stops event from moving further.
+
+Code:
+
+document.getElementById('owl').addEventListener(
+'click',
+function(e){
+e.stopPropagation();
+console.log('Owl clicked');
+}
+);
+
+Result:
+
+Only Owl clicked is printed.
+
+Prevents browser's default behavior.
+
+Example:
+
+document.getElementById('google').addEventListener(
+'click',
+function(e){
+e.preventDefault();
+}
+);
+
+Result:
+
+Google link will not open.
+
+---
+
+8. Event Delegation
+
+---
+
+Instead of attaching events to every image,
+attach one event listener to the parent element.
+
+Advantages:
+
+* Better performance
+* Less memory usage
+* Handles dynamic elements
+
+## Purpose:
+
+When user clicks any image:
+
+1. Detect clicked image
+2. Find parent 
+3. Remove that  from DOM
+4. Image disappears
+
+Code:
+
+document.querySelector('#images').addEventListener(
+
+```
+'click',
+
+function(e){
+
+    // Print parent element of clicked item
+    console.log(e.target.parentNode);
+
+    // Print tag name of clicked element
+    console.log(e.target.tagName);
+
+    // Ensure only images are removed
+    if(e.target.tagName === 'IMG'){
+
+        // Print image id
+        console.log(e.target.id);
+
+        // Get parent LI
+        let removeLi = e.target.parentNode;
+
+        // Remove LI from DOM
+        removeLi.remove();
+
+        // Alternative Method:
+        // removeLi.parentNode.removeChild(removeLi);
+
+    }
+
+},
+
+false
+```
+
+);
+
+document.querySelector('#images')
+
+## Meaning:
+
+Select UL having id="images".
+
+---
+
+.addEventListener('click', ...)
+
+## Meaning:
+
+Attach click event to UL.
+
+---
+
+function(e)
+
+## Meaning:
+
+Callback function executed whenever click occurs.
+
+e contains all event information.
+
+---
+
+console.log(e.target.parentNode);
+
+## Meaning:
+
+Print parent element of clicked element.
+
+Example:
+
+Clicked Element:
+
+Output:
+
+---
+
+console.log(e.target.tagName);
+
+## Meaning:
+
+Print HTML tag name.
+
+Possible Outputs:
+
+IMG
+LI
+UL
+A
+
+---
+
+if(e.target.tagName === 'IMG')
+
+## Meaning:
+
+Only execute removal logic if user clicked an image.
+
+Without this condition:
+
+Clicking UL or Link could cause errors.
+
+---
+
+console.log(e.target.id);
+
+## Meaning:
+
+Print id of clicked image.
+
+Example Output:
+
+owl
+river
+japan
+photoshop
+
+---
+
+let removeLi = e.target.parentNode;
+
+## Meaning:
+
+Store parent LI of clicked image.
+
+Example:
+
+removeLi now points to LI.
+
+---
+
+removeLi.remove();
+
+## Meaning:
+
+Remove entire LI from page.
+
+Result:
+
+Image disappears immediately.
+
+Returns actual element that triggered event.
+
+Example:
+
+e.target
+
+Output:
+
+Returns parent of selected element.
+
+Example:
+
+e.target.parentNode
+
+Output:
+
+Returns HTML tag name.
+
+Example:
+
+e.target.tagName
+
+Output:
+
+IMG
+
+User Clicks Image
+│
+▼
+Event Triggered on UL
+│
+▼
+e.target Finds Clicked Image
+│
+▼
+Check if Tag = IMG
+│
+▼
+Get Parent LI
+│
+▼
+Remove LI
+│
+▼
+Image Disappears
+
+✔ onclick
+✔ addEventListener()
+✔ Event Object
+✔ Event Bubbling
+✔ Event Capturing
+✔ stopPropagation()
+✔ preventDefault()
+✔ Event Delegation
+✔ target
+✔ parentNode
+✔ tagName
+✔ remove()
+✔ DOM Manipulation
+
+# This example demonstrates most important JavaScript Event Handling concepts.
+
+*/
