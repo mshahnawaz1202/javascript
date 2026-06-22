@@ -1,0 +1,223 @@
+JAVASCRIPT PROMISE
+
+Definition:
+A Promise is an object that represents the eventual result of an asynchronous operation.
+
+---
+
+## PROMISE LIFECYCLE
+
+```
+            Promise Created
+                   |
+                   v
+              [ PENDING ]
+                   |
+      +------------+------------+
+      |                         |
+      v                         v
+ resolve()                 reject()
+      |                         |
+      v                         v
+[ FULFILLED ]             [ REJECTED ]
+```
+
+---
+
+## BASIC EXAMPLE
+
+const promise = new Promise((resolve, reject) => {
+let success = true;
+
+```
+if (success) {
+    resolve("Data received");
+} else {
+    reject("Something went wrong");
+}
+```
+
+});
+
+---
+
+## CONSUMING A PROMISE
+
+promise
+.then(result => {
+console.log(result);
+})
+.catch(error => {
+console.log(error);
+});
+
+Flow:
+
+```
+  Promise
+     |
+     v
+  .then()
+     |
+```
+
+Success Result
+|
+v
+Output
+
+If Error:
+
+```
+  Promise
+     |
+     v
+  .catch()
+     |
+  Error
+     |
+     v
+  Output
+```
+
+---
+
+## PROMISE CHAINING
+
+Promise.resolve(5)
+.then(x => x * 2)
+.then(x => x + 10)
+.then(console.log);
+
+Diagram:
+
+5
+|
+v
+[x * 2]
+|
+10
+|
+v
+[x + 10]
+|
+20
+|
+v
+console.log()
+
+---
+
+## REAL-WORLD API FLOW
+
+```
+  Browser
+     |
+     v
+  fetch()
+     |
+     v
+```
+
+HTTP Request
+|
+v
+Server
+|
+v
+HTTP Response
+|
+v
+response.json()
+|
+v
+Data
+|
+v
+.then(data)
+
+Code:
+
+fetch("/users")
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error(error));
+
+---
+
+## ASYNC/AWAIT RELATIONSHIP
+
+Promise Style:
+
+getUser()
+|
+v
+.then(user => ...)
+
+Async/Await Style:
+
+const user = await getUser();
+
+Diagram:
+
+```
+      Promise
+         |
+         v
+    await waits
+         |
+         v
+  Result Available
+         |
+         v
+  Continue Execution
+```
+
+---
+
+## PROMISE.ALL()
+
+Promise.all([
+p1,
+p2,
+p3
+])
+
+Diagram:
+
+p1 ----
+p2 -----+-----> Promise.all -----> Result Array
+p3 ----/
+
+All promises must succeed.
+
+Result:
+["A", "B", "C"]
+
+---
+
+## PROMISE.RACE()
+
+p1 (1 sec) ----
+p2 (3 sec) -----+-----> First completed wins
+p3 (2 sec) ----/
+
+Result:
+Value from p1
+
+---
+
+## INTERVIEW ANSWER
+
+A Promise is a JavaScript object used to handle asynchronous operations. It has three states:
+
+PENDING ---> FULFILLED
+
+---> REJECTED
+
+Promises allow cleaner asynchronous code using:
+
+* .then()
+* .catch()
+* .finally()
+* async/await
